@@ -25,7 +25,7 @@ export const sendContactEmail = async (data: ContactMessage): Promise<void> => {
     });
 
     // Destinataire (votre email)
-    const recipientEmail = process.env.MAIL_CONTACT || process.env.SMTP_USER;
+    const recipientEmail = process.env.MAIL_CONTACT;
 
     // Contenu de l'email
     const mailOptions = {
@@ -79,7 +79,6 @@ export const sendContactEmail = async (data: ContactMessage): Promise<void> => {
 
     // Envoi de l'email
     await transporter.sendMail(mailOptions);
-    console.log(`✅ Email envoyé de ${data.email} à ${recipientEmail}`);
   } catch (error) {
     console.error("❌ Erreur envoi email:", error);
     throw new Error(
